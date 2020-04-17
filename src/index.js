@@ -2,13 +2,13 @@ const width = 800,
   height = 500,
   padding = 50;
 
+const tooltip = d3.select(".visHolder").append("div").attr("id", "tooltip");
+
 const svgContainer = d3
   .select(".visHolder")
   .append("svg")
   .attr("width", width)
   .attr("height", height);
-
-const tooltip = d3.select(".visHolder").append("div").attr("id", "tooltip");
 
 const timeFormat = d3.timeFormat("%M:%S");
 
@@ -99,7 +99,9 @@ fetch(
         tooltip
           .html(yearArray[i])
           .attr("data-year", yearArray[i])
-          .style("opacity", 0.7);
+          .style("opacity", 0.7)
+          .style("left", xScale(yearArray[i]) + 20 + "px")
+          .style("top", yScale(timeArray[i]) - 30 + "px");
       })
       .on("mouseout", (d, i) => {
         tooltip.style("opacity", 0);
