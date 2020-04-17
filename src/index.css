@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&display=swap");
+
+:root {
+  --mainDark: #364954;
+  --mainLight: #e6f4f1;
+  --accentDark: #003358;
+  --accentLight: #50b5e3;
+  --green: #2c8478;
+  --yellow: #eee8a9;
+}
+
+html {
+  font-family: "Dosis", sans-serif;
+  background: var(--mainLight);
+}
+
+svg {
+  background: green;
+}
