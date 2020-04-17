@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 :root {
   --mainDark: #364954;
@@ -10,10 +10,18 @@
 }
 
 html {
-  font-family: "Dosis", sans-serif;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
   background: var(--mainLight);
 }
 
+.containter {
+  background: var(--green);
+}
+
 svg {
-  background: green;
+  background: white;
 }
