@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+:root {
+  --mainDark: #364954;
+  --mainLight: #e6f4f1;
+  --accentDark: #003358;
+  --accentLight: #50b5e3;
+  --ITA: #f9f871;
+  --USA: #aff68c;
+  --ESP: #66ecb1;
+  --FRA: #00ded2;
+  --GER: #00cbe4;
+  --COL: #00cbe4;
+  --DEN: #a1356d;
+  --RUS: #9c5296;
+  --SUI: #8b6eb8;
+  --POR: #7488d0;
+  --UKR: #eee8a9;
+  --WHITE: #ffffff;
+}
+
+html {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  background: var(--mainLight);
+}
+
+.containter {
+  margin-top: 30px;
+  background: var(--WHITE);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0px 0px 5px;
+  width: 850px;
+  height: 550px;
+}
+
+#tooltip {
+  position: absolute;
+  font-size: 12px;
+  text-align: left;
+  border: 1px solid var(--mainDark);
+  box-shadow: 0px 0px 5px;
+  width: 5px;
+  height: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--mainLight);
+  opacity: 0;
+  padding: 10px;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+footer {
+  text-align: right;
+  margin-right: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+}
