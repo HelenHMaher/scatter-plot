@@ -81,6 +81,22 @@ fetch(
       .domain([d3.min(yearArray) - 1, d3.max(yearArray) + 1])
       .range([padding, width - padding]);
 
+    const textContent = (d, i) => {
+      return (
+        "<strong>" +
+        d.Name +
+        "</strong> (" +
+        d.Nationality +
+        ") " +
+        d.Year +
+        "<br>" +
+        "Time: " +
+        d.Time +
+        "<br><br>" +
+        d.Doping
+      );
+    };
+
     svgContainer
       .selectAll("circle")
       .data(dataset)
@@ -97,14 +113,19 @@ fetch(
       .style("stroke-width", (d, i) => strokeColor(d.Doping === ""))
       .on("mouseover", (d, i) => {
         tooltip
-          .html(yearArray[i])
+          .html(textContent(d, i))
           .attr("data-year", yearArray[i])
           .style("opacity", 0.7)
-          .style("left", xScale(yearArray[i]) + 20 + "px")
-          .style("top", yScale(timeArray[i]) - 30 + "px");
+          .style("width", "230px")
+          .style("height", "100px")
+          .style("left", xScale(yearArray[i]) + 180 + "px")
+          .style("top", yScale(timeArray[i]) + "px");
       })
-      .on("mouseout", (d, i) => {
-        tooltip.style("opacity", 0);
+      .on("mouseout", () => {
+        tooltip
+          .style("opacity", "0")
+          .style("width", "5px")
+          .style("height", "5px");
       });
 
     const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
