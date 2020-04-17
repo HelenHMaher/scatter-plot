@@ -37,6 +37,7 @@ html {
   box-shadow: 0px 0px 5px;
   width: 850px;
   height: 550px;
+  padding-left: 20px;
 }
 
 #tooltip {

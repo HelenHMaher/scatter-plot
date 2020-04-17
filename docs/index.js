@@ -1,6 +1,6 @@
 const width = 800,
   height = 500,
-  padding = 50;
+  padding = 60;
 
 const tooltip = d3.select(".visHolder").append("div").attr("id", "tooltip");
 
@@ -9,6 +9,14 @@ const svgContainer = d3
   .append("svg")
   .attr("width", width)
   .attr("height", height);
+
+svgContainer
+  .append("text")
+  .text("Time in Minutes")
+  .attr("transform", "rotate(-90 15 200)")
+  .attr("x", 15)
+  .attr("y", 200)
+  .style("font-size", "18px");
 
 const timeFormat = d3.timeFormat("%M:%S");
 
@@ -90,7 +98,6 @@ fetch(
         ") " +
         d.Year +
         "<br>" +
-        "Time: " +
         d.Time +
         "<br><br>" +
         d.Doping
@@ -175,5 +182,6 @@ fetch(
       .attr("id", "legendTitle")
       .attr("x", width - 200)
       .attr("y", height / 6 - 20)
+      .style("font-size", "18px")
       .text("Legend");
   });
