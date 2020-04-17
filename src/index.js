@@ -1,5 +1,5 @@
-const width = 700,
-  height = 400,
+const width = 800,
+  height = 500,
   padding = 50;
 
 const svgContainer = d3
@@ -8,7 +8,37 @@ const svgContainer = d3
   .attr("width", width)
   .attr("height", height);
 
+const legend = d3.select(".visHolder").append("div").attr("id", "legend");
+const tooltip = d3.select(".visHolder").append("div").attr("id", "tooltip");
+
 const timeFormat = d3.timeFormat("%M:%S");
+
+const dotColor = (Nationality) => {
+  switch (Nationality) {
+    case "ITA":
+      return "var(--ITA)";
+    case "USA":
+      return "var(--USA)";
+    case "ESP":
+      return "var(--ESP)";
+    case "FRA":
+      return "var(--FRA)";
+    case "GER":
+      return "var(--GER)";
+    case "COL":
+      return "var(--COL)";
+    case "DEN":
+      return "var(--DEN)";
+    case "RUS":
+      return "var(--RUS)";
+    case "SUI":
+      return "var(--SUI)";
+    case "POR":
+      return "var(--POR)";
+    default:
+      return "black";
+  }
+};
 
 fetch(
   "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json"
@@ -41,7 +71,9 @@ fetch(
       .attr("r", (d) => 5)
       .attr("class", "dot")
       .attr("data-xvalue", (d, i) => yearArray[i])
-      .attr("data-yvalue", (d, i) => timeArray[i]);
+      .attr("data-yvalue", (d, i) => timeArray[i])
+      .style("fill", (d, i) => dotColor(d.Nationality))
+      .style("stroke", "blue");
 
     const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
@@ -57,4 +89,6 @@ fetch(
       .attr("id", "x-axis")
       .attr("transform", "translate(0," + (height - padding) + ")")
       .call(xAxis);
+
+    legend;
   });

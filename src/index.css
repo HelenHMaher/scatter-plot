@@ -6,7 +6,16 @@
   --accentDark: #003358;
   --accentLight: #50b5e3;
   --green: #2c8478;
-  --yellow: #eee8a9;
+  --ITA: #f9f871;
+  --USA: #aff68c;
+  --ESP: #66ecb1;
+  --FRA: #00ded2;
+  --GER: #00cbe4;
+  --COL: #00cbe4;
+  --DEN: #a1356d;
+  --RUS: #9c5296;
+  --SUI: #8b6eb8;
+  --POR: #7488d0;
 }
 
 html {
