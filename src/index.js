@@ -8,36 +8,56 @@ const svgContainer = d3
   .attr("width", width)
   .attr("height", height);
 
-const legend = d3.select(".visHolder").append("div").attr("id", "legend");
 const tooltip = d3.select(".visHolder").append("div").attr("id", "tooltip");
 
 const timeFormat = d3.timeFormat("%M:%S");
 
-const dotColor = (Nationality) => {
-  switch (Nationality) {
-    case "ITA":
-      return "var(--ITA)";
-    case "USA":
-      return "var(--USA)";
-    case "ESP":
-      return "var(--ESP)";
-    case "FRA":
-      return "var(--FRA)";
-    case "GER":
-      return "var(--GER)";
-    case "COL":
-      return "var(--COL)";
-    case "DEN":
-      return "var(--DEN)";
-    case "RUS":
-      return "var(--RUS)";
-    case "SUI":
-      return "var(--SUI)";
-    case "POR":
-      return "var(--POR)";
-    default:
-      return "black";
+const strokeColor = (toggle) => {
+  if (toggle) {
+    return "3";
+  } else {
+    return "1";
   }
+};
+
+const countries = [
+  ["WHITE", "No Doping Allegations"],
+  ["WHITE", "Doping Allegations"],
+  ["ITA", "Italy"],
+  ["USA", "United States of America"],
+  ["ESP", "Spain"],
+  ["FRA", "France"],
+  ["GER", "Germany"],
+  ["COL", "Colombia"],
+  ["DEN", "Denmark"],
+  ["RUS", "Russia"],
+  ["SUI", "Switzerland"],
+  ["POR", "Portugal"],
+  ["UKR", "Urkaine"],
+];
+
+const legendStroke = (text) => {
+  if (text === "No Doping Allegations") {
+    return "var(--mainDark)";
+  } else if (text === "Doping Allegations") {
+    return "var(--mainDark)";
+  } else {
+    return "none";
+  }
+};
+
+const legendStrokeWidth = (text) => {
+  if (text === "No Doping Allegations") {
+    return 3;
+  } else if (text === "Doping Allegations") {
+    return 1;
+  } else {
+    return "none";
+  }
+};
+
+const dotColor = (Nationality) => {
+  return "var(--" + Nationality + ")";
 };
 
 fetch(
@@ -73,7 +93,8 @@ fetch(
       .attr("data-xvalue", (d, i) => yearArray[i])
       .attr("data-yvalue", (d, i) => timeArray[i])
       .style("fill", (d, i) => dotColor(d.Nationality))
-      .style("stroke", "blue");
+      .style("stroke", "var(--mainDark)")
+      .style("stroke-width", (d, i) => strokeColor(d.Doping === ""));
 
     const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
@@ -90,5 +111,37 @@ fetch(
       .attr("transform", "translate(0," + (height - padding) + ")")
       .call(xAxis);
 
-    legend;
+    const legendContainer = svgContainer.append("g").attr("id", "legend");
+
+    const legend = legendContainer
+      .selectAll(".legend")
+      .data(countries)
+      .enter()
+      .append("g")
+      .attr("class", "legendEntries");
+
+    legend
+      .append("rect")
+      .attr("width", 10)
+      .attr("height", 10)
+      .attr("y", (d, i) => height / 6 + i * 20)
+      .attr("x", width - 200)
+      .style("fill", (d) => "var(--" + d[0] + ")")
+      .style("stroke", (d) => legendStroke(d[1]))
+      .style("stroke-width", (d) => legendStrokeWidth(d[1]));
+
+    legend
+      .append("text")
+      .attr("x", width - 180)
+      .attr("y", (d, i) => height / 6 + i * 20)
+      .attr("dy", ".75em")
+      .text((d) => d[1])
+      .style("font-size", "10px");
+
+    legend
+      .append("text")
+      .attr("id", "legendTitle")
+      .attr("x", width - 200)
+      .attr("y", height / 6 - 20)
+      .text("Legend");
   });

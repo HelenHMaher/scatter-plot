@@ -5,7 +5,6 @@
   --mainLight: #e6f4f1;
   --accentDark: #003358;
   --accentLight: #50b5e3;
-  --green: #2c8478;
   --ITA: #f9f871;
   --USA: #aff68c;
   --ESP: #66ecb1;
@@ -16,6 +15,8 @@
   --RUS: #9c5296;
   --SUI: #8b6eb8;
   --POR: #7488d0;
+  --UKR: #eee8a9;
+  --WHITE: #ffffff;
 }
 
 html {
@@ -28,9 +29,13 @@ html {
 }
 
 .containter {
-  background: var(--green);
+  background: var(--mainDark);
 }
 
 svg {
-  background: white;
+  background: var(--WHITE);
+}
+
+#legend {
+  background: black;
 }
