@@ -94,7 +94,16 @@ fetch(
       .attr("data-yvalue", (d, i) => timeArray[i])
       .style("fill", (d, i) => dotColor(d.Nationality))
       .style("stroke", "var(--mainDark)")
-      .style("stroke-width", (d, i) => strokeColor(d.Doping === ""));
+      .style("stroke-width", (d, i) => strokeColor(d.Doping === ""))
+      .on("mouseover", (d, i) => {
+        tooltip
+          .html(yearArray[i])
+          .attr("data-year", yearArray[i])
+          .style("opacity", 0.7);
+      })
+      .on("mouseout", (d, i) => {
+        tooltip.style("opacity", 0);
+      });
 
     const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
